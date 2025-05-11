@@ -29,13 +29,16 @@ namespace MaticeApp.Highlighters
             if (_highlightRectangle != null) return;
 
             // Ensure rowA <= rowB and colA <= colB
-            if (rowA > rowB || colA > colB)
+            if (rowA > rowB)
             {
                 var tempRow = rowA;
-                var tempCol = colA;
                 rowA = rowB;
-                colA = colB;
                 rowB = tempRow;
+            }
+            if (colA > colB)
+            {
+                var tempCol = colA;
+                colA = colB;
                 colB = tempCol;
             }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaticeApp.Highlighters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,12 +26,34 @@ namespace MaticeApp
         {
             InitializeComponent();
             SetMatrices();
-            SetPopups();
+            SetHighlighters();
         }
 
-        private void SetPopups()
+        private void SetHighlighters() // Temporary solution
         {
-            
+            SarrusHighlighter matrix2Highlighter = new SarrusHighlighter(matrix2, Color.FromArgb(40, 0, 255, 0), Color.FromArgb(40, 0, 255, 0));
+            matrix2Highlighter.Highlight(0, 0);
+            SarrusHighlighter matrix4Highlighter = new SarrusHighlighter(matrix4, Color.FromArgb(40, 0, 255, 0), Color.FromArgb(40, 0, 255, 0));
+            matrix4Highlighter.Highlight(0, 0);
+
+            SarrusHighlighter matrix5Highlighter = new SarrusHighlighter(matrix5, Color.FromArgb(40, 0, 255, 0), Color.FromArgb(40, 0, 255, 0));
+            matrix5Highlighter.Highlight(0, 2);
+            SarrusHighlighter matrix7Highlighter = new SarrusHighlighter(matrix7, Color.FromArgb(40, 0, 255, 0), Color.FromArgb(40, 0, 255, 0));
+            matrix7Highlighter.Highlight(0, 2);
+
+            SingleElementHighlighter matrix3Highlighter1 = new SingleElementHighlighter(matrix3, Color.FromArgb(40, 0, 255, 0));
+            matrix3Highlighter1.Highlight(0, 0);
+            SingleElementHighlighter matrix3Highlighter2 = new SingleElementHighlighter(matrix3, Color.FromArgb(40, 0, 255, 0));
+            matrix3Highlighter2.Highlight(1, 1);
+            SingleElementHighlighter matrix3Highlighter3 = new SingleElementHighlighter(matrix3, Color.FromArgb(40, 0, 255, 0));
+            matrix3Highlighter3.Highlight(2, 2);
+
+            SingleElementHighlighter matrix6Highlighter1 = new SingleElementHighlighter(matrix6, Color.FromArgb(40, 0, 255, 0));
+            matrix6Highlighter1.Highlight(0, 3);
+            SingleElementHighlighter matrix6Highlighter2 = new SingleElementHighlighter(matrix6, Color.FromArgb(40, 0, 255, 0));
+            matrix6Highlighter2.Highlight(1, 2);
+            SingleElementHighlighter matrix6Highlighter3 = new SingleElementHighlighter(matrix6, Color.FromArgb(40, 0, 255, 0));
+            matrix6Highlighter3.Highlight(2, 1);
         }
 
         private void SetMatrices()
