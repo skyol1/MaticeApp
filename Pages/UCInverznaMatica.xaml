@@ -1,0 +1,156 @@
+﻿<UserControl x:Class="MaticeApp.UCInverznaMatica"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaticeApp"
+             mc:Ignorable="d" 
+             d:Background="#FFE6E6E6"
+             d:DesignWidth="800">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="8,10,10,50">
+
+                <local:PageTitle>
+                    <local:PageTitle.TitleContent>
+                        <TextBlock Text="Inverzná matica"/>
+                    </local:PageTitle.TitleContent>
+                </local:PageTitle>
+
+                <local:PagePanel>
+                    <TextBlock TextWrapping="Wrap">
+                        Inverzná matica k danej matici je matica, ktorej súčin s pôvodnou maticou sa rovná jednotkovej matici.
+                        Inverzná matica existuje len pre 
+                        <local:TooltipSpan>štvorcové matice
+                           <local:TooltipSpan.ToolTip>
+                               <TextBlock>
+                                   matica typu <Italic>n×n</Italic>.
+                               </TextBlock>
+                           </local:TooltipSpan.ToolTip>
+                        </local:TooltipSpan>, ktoré sú 
+                        <local:TooltipSpan ToolTip="majú nenulový determinant">regulárne</local:TooltipSpan>
+                    </TextBlock>
+                </local:PagePanel>
+
+                <local:PageParagraph>
+                    <local:PageParagraph.Title>
+                        <TextBlock Text="Definícia"/>
+                    </local:PageParagraph.Title>
+                    <StackPanel>
+                        <TextBlock TextWrapping="Wrap">
+                            Nech <local:MatrixNameSpan Text="A"/> je štvorcová matica typu <Italic>n×n</Italic>. 
+                            Potom maticu <local:MatrixNameSpan Text="A^-1"/>
+                            nazývame inverzná matica k matici <local:MatrixNameSpan Text="A"/>, ak <LineBreak/>
+                            <local:MatrixNameSpan Text="A"/> · <local:MatrixNameSpan Text="A^-1"/> =
+                            <local:MatrixNameSpan Text="A^-1"/>  · <local:MatrixNameSpan Text="A"/> = 
+                            <local:MatrixNameSpan Text="E_n"/> <LineBreak/>
+                            kde <local:MatrixNameSpan Text="E_n"/> je jednotková matica
+                            rovnakého typu <Italic>n×n</Italic>. <LineBreak/>
+                            <Run Text="Podmienka existencie inverznej matice:" FontWeight="SemiBold"/> <LineBreak/>
+                            Inverzná matica existuje iba pre štvorcové matice, ktoré majú nenulový determinant. <LineBreak/>
+                            Ak je determinant matice <local:MatrixNameSpan Text="A"/> nulový, 
+                            tak <local:MatrixNameSpan Text="A"/> nazývame singulárna matica.
+                            K singulárnej matici neexistuje inverzná matica. <LineBreak/>
+                            Naopak, ak je determinant matice <local:MatrixNameSpan Text="A"/> nenulový, 
+                            tak ju nazývame regulárna a inverzná matica k nej existuje.
+                        </TextBlock>
+
+                        <TextBlock Text="Výpočet" FontWeight="SemiBold" Margin="0,10,0,0"/>
+
+                        <local:StackPanelHorizontal>
+                            <TextBlock Margin="0,0,0,3">
+                                <local:MatrixNameSpan Text="A^-1"/> =
+                            </TextBlock>
+                            <local:Fraction Margin="5,0,5,0">
+                                <local:Fraction.Numerator>
+                                    <TextBlock Text="1"/>
+                                </local:Fraction.Numerator>
+                                <local:Fraction.Denominator>
+                                    <TextBlock>
+                                        |<local:MatrixNameSpan Text="A"/>|
+                                    </TextBlock>
+                                </local:Fraction.Denominator>
+                            </local:Fraction>
+                            <local:Matrix x:Name="matrix1"/>
+                            <TextBlock Margin="30,0,0,0">
+                                kde <local:MatrixElementSpan Text="D_ij"/> =
+                                (-1)<local:SuperscriptSpan Text="i+j"/> ·
+                                <InlineUIContainer>
+                                    <local:PopupControl>
+                                        <local:PopupControl.TriggerElement>
+                                            <local:HighlightBorder>
+                                                <TextBlock>
+                                                    |<local:MatrixNameSpan Text="A_ij"/>|
+                                                </TextBlock>
+                                            </local:HighlightBorder>
+                                        </local:PopupControl.TriggerElement>
+                                        <StackPanel>
+                                            <TextBlock>
+                                                Determinant matice s odstráneným i-tým riadkom a j-tým stĺpcom.
+                                            </TextBlock>
+                                            <local:StackPanelHorizontal HorizontalAlignment="Center" Margin="0,15,0,0">
+                                                <TextBlock Margin="0,0,5,0">
+                                                    <local:MatrixNameSpan Text="A"/> =
+                                                </TextBlock>
+                                                <local:Matrix x:Name="matrix1_1"/>
+                                                <TextBlock Margin="15,0,5,0">
+                                                    |<local:MatrixNameSpan Text="A_23"/>| =
+                                                </TextBlock>
+                                                <local:Matrix x:Name="matrix1_2"/>
+                                            </local:StackPanelHorizontal>
+                                        </StackPanel>
+                                    </local:PopupControl>
+                                </InlineUIContainer>
+                            </TextBlock>
+                        </local:StackPanelHorizontal>
+
+                        <TextBlock Text="Príklad:" FontWeight="SemiBold" Margin="0,10,0,0"/>
+
+                        <local:StackPanelHorizontal Margin="0,20,0,0">
+                            <TextBlock Margin="10,0,5,3">
+                                <local:MatrixNameSpan Text="A"/> =
+                            </TextBlock>
+                            <local:Matrix x:Name="matrix2"/>
+                            <TextBlock Margin="40,0,10,3">
+                                <local:MatrixNameSpan Text="A^-1"/> =
+                            </TextBlock>
+                            <local:Fraction Margin="0,0,5,0">
+                                <local:Fraction.Numerator>
+                                    <TextBlock Text="1"/>
+                                </local:Fraction.Numerator>
+                                <local:Fraction.Denominator>
+                                    <TextBlock Text="2"/>
+                                </local:Fraction.Denominator>
+                            </local:Fraction>
+                            <local:Matrix x:Name="matrix3"/>
+                            <TextBlock Text="=" Margin="10,0,10,3"/>
+                            <local:Matrix x:Name="matrix4"/>
+                        </local:StackPanelHorizontal>
+
+                        <local:StackPanelHorizontal Margin="0,20,0,0">
+                            <TextBlock Margin="10,0,5,3">
+                                <local:MatrixNameSpan Text="B"/> =
+                            </TextBlock>
+                            <local:Matrix x:Name="matrix5"/>
+                            <TextBlock Margin="40,0,10,3">
+                                <local:MatrixNameSpan Text="B^-1"/> =
+                            </TextBlock>
+                            <local:Fraction Margin="0,0,5,0">
+                                <local:Fraction.Numerator>
+                                    <TextBlock Text="1"/>
+                                </local:Fraction.Numerator>
+                                <local:Fraction.Denominator>
+                                    <TextBlock Text="10"/>
+                                </local:Fraction.Denominator>
+                            </local:Fraction>
+                            <local:Matrix x:Name="matrix6"/>
+                            <TextBlock Text="=" Margin="10,0,10,3"/>
+                            <local:Matrix x:Name="matrix7"/>
+                        </local:StackPanelHorizontal>
+                    </StackPanel>
+                </local:PageParagraph>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

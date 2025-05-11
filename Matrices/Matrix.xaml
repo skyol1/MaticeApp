@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="MaticeApp.Matrix"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaticeApp"
+             mc:Ignorable="d"
+             Height="90" Width="150"
+             Background="Bisque">
+
+    <Grid x:Name="mainGrid">
+        <!-- Define a grid for the layout of the brackets and the matrix -->
+        <Grid.ColumnDefinitions>
+            <!-- Bracket on the left -->
+            <ColumnDefinition/>
+            <!-- Matrix in the center -->
+            <ColumnDefinition/>
+            <!-- Bracket on the right -->
+            <ColumnDefinition/>
+            <!-- Canvas after the matrix to draw row operations -->
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Bracket -->
+        <Viewbox Grid.Column="0" x:Name="LeftBracket"/>
+
+        <!-- Matrix Grid in the Center -->
+        <Grid x:Name="MatrixGrid" Grid.Column="1" Margin="0,0,0,0"
+              MouseMove="MatrixGrid_MouseMove" MouseLeave="MatrixGrid_MouseLeave"/>
+
+        <!-- Canvas for Highlight -->
+        <Canvas x:Name="HighlightCanvas" Grid.Column="1" IsHitTestVisible="False"/>
+
+        <!-- Right Bracket -->
+        <Viewbox Grid.Column="2" x:Name="RightBracket"/>
+
+        <Canvas Grid.Column="3" x:Name="CanvasRowOperations"/>
+
+    </Grid>
+</UserControl>

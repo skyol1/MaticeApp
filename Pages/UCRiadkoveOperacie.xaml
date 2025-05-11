@@ -1,0 +1,200 @@
+﻿<UserControl x:Class="MaticeApp.UCRiadkoveOperacie"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaticeApp"
+             mc:Ignorable="d" 
+             d:Background="#FFE6E6E6"
+             d:DesignWidth="800">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="8,10,10,50">
+
+                <local:PageTitle>
+                    <local:PageTitle.TitleContent>
+                        <TextBlock Text="Riadkovo ekvivalentné operácie"/>
+                    </local:PageTitle.TitleContent>
+                </local:PageTitle>
+
+                <local:PagePanel>
+                    <TextBlock TextWrapping="Wrap">
+                        Riadkové ekvivalentné operácie sú operácie, ktoré vykonávame na riadkoch matice s cieľom upraviť ju, 
+                        pričom hovoríme že upravená matica je s pôvodnou ekvivalentná 
+                        (napríklad, nemení sa množina riešení systému lineárnych rovníc, ktoré táto matica reprezentuje). 
+                        Tieto operácie sú napríklad základom Gaussovej elimináčnej metódy riešenia systému lineárnych rovníc.
+                    </TextBlock>
+                </local:PagePanel>
+
+                <local:PageParagraph>
+                    <local:PageParagraph.Title>
+                        <TextBlock Text="Definícia"/>
+                    </local:PageParagraph.Title>
+                    <StackPanel>
+                        <TextBlock Text="Existujú tri základné riadkovo ekvivalentné operácie:"/>
+
+                        <Grid Margin="0,10,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="1." Grid.Row="0" Grid.Column="0" Margin="0,0,10,0"/>
+
+                            <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,0,20">
+                                <TextBlock TextWrapping="Wrap">
+                                    <Run FontWeight="SemiBold">Vzájomná výmena dvoch riadkov:</Run> <LineBreak/>
+                                    (<local:MatrixElementSpan Text="R_i"/> ↔ <local:MatrixElementSpan Text="R_j"/>)
+                                </TextBlock>
+                                <local:StackPanelHorizontal Margin="0,10,0,0">
+                                    <local:Matrix x:Name="matrixD1_0"/>
+                                    <TextBlock Text="➔" Margin="15,0,10,0"/>
+                                    <local:Matrix x:Name="matrixD1_1"/>
+                                </local:StackPanelHorizontal>
+                            </StackPanel>
+
+                            <TextBlock Text="2." Grid.Row="1" Grid.Column="0" Margin="0,0,10,0"/>
+
+                            <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,0,20">
+                                <TextBlock TextWrapping="Wrap">
+                                    <Run FontWeight="SemiBold">Vynásobenie riadka nenulovým číslom:</Run> <LineBreak/>
+                                    Každý prvok riadka sa násobí konštantou <Italic>k</Italic> ≠ 0: <LineBreak/>
+                                    (<local:MatrixElementSpan Text="R_i"/> → <Italic>k</Italic><local:MatrixElementSpan Text="R_i"/>)
+                                </TextBlock>
+                                <local:StackPanelHorizontal Margin="0,10,0,0">
+                                    <local:Matrix x:Name="matrixD2_0"/>
+                                    <TextBlock Text="➔" Margin="-5,0,10,0"/>
+                                    <local:Matrix x:Name="matrixD2_1"/>
+                                </local:StackPanelHorizontal>
+                            </StackPanel>
+
+                            <TextBlock Text="3." Grid.Row="2" Grid.Column="0" Margin="0,0,10,0"/>
+
+                            <StackPanel Grid.Row="2" Grid.Column="1">
+                                <TextBlock TextWrapping="Wrap">
+                                    <Run FontWeight="SemiBold">Pripočítanie k-násobku jedného riadka k inému riadku:</Run> <LineBreak/>
+                                    K riadku <local:MatrixElementSpan Text="R_i"/> pripočítame násobok iného riadka
+                                    <local:MatrixElementSpan Text="R_j"/>, kde <Italic>k</Italic> je konštanta: <LineBreak/>
+                                    (<local:MatrixElementSpan Text="R_i"/> → <local:MatrixElementSpan Text="R_i"/> +
+                                    <Italic>k</Italic><local:MatrixElementSpan Text="R_j"/>)
+                                </TextBlock>
+                                <local:StackPanelHorizontal Margin="0,10,0,0">
+                                    <local:Matrix x:Name="matrixD3_0"/>
+                                    <TextBlock Text="➔" Margin="5,0,10,0"/>
+                                    <local:Matrix x:Name="matrixD3_1"/>
+                                </local:StackPanelHorizontal>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <TextBlock Margin="0,30,0,10">
+                            <Run FontWeight="SemiBold">Príklad:</Run> <LineBreak/>
+                            Máme systém lineárnych rovníc s tromi rovnicami a tromi neznámymi. <LineBreak/>
+                            Vytvorme maticu, do ktorej prenesieme všetky koeficienty a absolútne členy.
+                        </TextBlock>
+                        
+                        <local:StackPanelHorizontal>
+                            <local:SLR x:Name="SLR1"/>
+                            <TextBlock Text="➔" Margin="10,0,15,0"/>
+                            <local:Matrix x:Name="matrix1"/>
+                        </local:StackPanelHorizontal>
+
+                        <Grid Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="1." Grid.Row="0" Grid.Column="0" Margin="0,0,10,0"/>
+
+                            <StackPanel Grid.Row="0" Grid.Column="1">
+                                <TextBlock>
+                                    <Run Text="Gaussova eliminácia" FontWeight="SemiBold"/> <LineBreak/>
+                                    Upravíme na horný trojuholníkový tvar:
+                                </TextBlock>
+                                <WrapPanel>
+                                    <local:StackPanelHorizontal VerticalAlignment="Bottom" Margin="0,15,10,0">
+                                        <local:Matrix x:Name="matrix1_0"/>
+                                        <TextBlock Text="=" Margin="5,0,0,0"/>
+                                    </local:StackPanelHorizontal>
+                                    <local:StackPanelHorizontal VerticalAlignment="Bottom" Margin="0,15,10,0">
+                                        <local:Matrix x:Name="matrix1_1"/>
+                                        <TextBlock Text="=" Margin="5,0,0,0"/>
+                                    </local:StackPanelHorizontal>
+                                    <local:StackPanelHorizontal VerticalAlignment="Bottom" Margin="0,15,10,0">
+                                        <local:Matrix x:Name="matrix1_2"/>
+                                        <TextBlock Text="=" Margin="5,0,0,0"/>
+                                    </local:StackPanelHorizontal>
+                                    <local:Matrix x:Name="matrix1_3" VerticalAlignment="Bottom" Margin="0,15,0,0"/>
+                                </WrapPanel>
+
+                                <TextBlock Margin="0,10,0,0">
+                                    Vypočítame všetky neznáme:
+                                </TextBlock>
+
+                                <local:StackPanelHorizontal Margin="0,10,0,15">
+                                    <local:Matrix x:Name="matrix1_4"/>
+                                    <TextBlock Text="➔" Margin="10,0,10,0"/>
+                                    <local:SLR x:Name="SLR2"/>
+                                </local:StackPanelHorizontal>
+                        
+                            </StackPanel>
+
+                            <TextBlock Text="2." Grid.Row="1" Grid.Column="0"/>
+
+                            <StackPanel Grid.Row="1" Grid.Column="1">
+                                <TextBlock>
+                                    <Run Text="Gauss-Jordanova eliminácia" FontWeight="SemiBold"/> <LineBreak/>
+                                    Upravíme na jednotkovú maticu:
+                                </TextBlock>
+                                <WrapPanel>
+                                    <local:StackPanelHorizontal VerticalAlignment="Bottom" Margin="0,15,10,0">
+                                        <local:Matrix x:Name="matrix2_0"/>
+                                        <TextBlock Text="=" Margin="5,0,0,0"/>
+                                    </local:StackPanelHorizontal>
+                                    <local:StackPanelHorizontal VerticalAlignment="Bottom" Margin="0,15,10,0">
+                                        <local:Matrix x:Name="matrix2_1"/>
+                                        <TextBlock Text="=" Margin="5,0,0,0"/>
+                                    </local:StackPanelHorizontal>
+                                    <local:StackPanelHorizontal VerticalAlignment="Bottom" Margin="0,15,10,0">
+                                        <local:Matrix x:Name="matrix2_2"/>
+                                        <TextBlock Text="=" Margin="5,0,0,0"/>
+                                    </local:StackPanelHorizontal>
+                                    <local:StackPanelHorizontal VerticalAlignment="Bottom" Margin="0,15,10,0">
+                                        <local:Matrix x:Name="matrix2_3"/>
+                                        <TextBlock Text="=" Margin="5,0,0,0"/>
+                                    </local:StackPanelHorizontal>
+                                    <local:StackPanelHorizontal VerticalAlignment="Bottom" Margin="0,15,10,0">
+                                        <local:Matrix x:Name="matrix2_4"/>
+                                        <TextBlock Text="=" Margin="5,0,0,0"/>
+                                    </local:StackPanelHorizontal>
+                                    <local:Matrix x:Name="matrix2_5" VerticalAlignment="Bottom" Margin="0,15,0,0"/>
+                                </WrapPanel>
+
+                                <TextBlock Margin="0,10,0,0">
+                                    Vypočítame všetky neznáme:
+                                </TextBlock>
+
+                                <local:StackPanelHorizontal Margin="0,10,0,15">
+                                    <local:Matrix Grid.Column="0" x:Name="matrix2_6"/>
+                                    <TextBlock Text="➔" Grid.Column="1" Margin="10,0,10,0"/>
+                                    <local:SLR x:Name="SLR3"/>
+                                </local:StackPanelHorizontal>
+                            </StackPanel>
+
+                        </Grid>
+                    </StackPanel>
+                </local:PageParagraph>
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

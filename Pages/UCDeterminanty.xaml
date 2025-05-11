@@ -1,0 +1,1140 @@
+﻿<UserControl x:Class="MaticeApp.UCDeterminanty"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaticeApp"
+             mc:Ignorable="d" 
+             d:Background="#FFE6E6E6"
+             d:DesignWidth="800">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="8,10,10,50">
+
+                <local:PageTitle>
+                    <local:PageTitle.TitleContent>
+                        <TextBlock Text="Determinanty"/>
+                    </local:PageTitle.TitleContent>
+                </local:PageTitle>
+
+                <local:PagePanel>
+                    <TextBlock TextWrapping="Wrap">
+                        Determinant je skalárna hodnota, ktorá je priradená ku štvorcovej matici 
+                        a poskytuje dôležité informácie o tejto matici, ako aj o lineárnej transformácii, 
+                        ktorú matica reprezentuje. 
+                        Determinant môže byť použitý na overenie regulárnosti matice,
+                        hadanie inverznej matice a reišenie systémov lineárnych rovníc.
+                    </TextBlock>
+                </local:PagePanel>
+
+                <local:PageParagraph>
+                    <local:PageParagraph.Title>
+                        <TextBlock Text="Definícia"/>
+                    </local:PageParagraph.Title>
+                    <StackPanel>
+                        <TextBlock TextWrapping="Wrap">
+                            Determinantom štvorcovej matice <local:MatrixNameSpan Text="A"/> = (<local:MatrixElementSpan Text="a_ij"/>) 
+                            stupňa <Italic>n</Italic> je číslo |<local:MatrixNameSpan Text="A"/>|, pre ktoré platí:
+                        </TextBlock>
+                        
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,10,0">
+                                1.
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="0" Grid.Column="1">
+                                <Italic>n</Italic> = 1: |<local:MatrixNameSpan Text="A"/>| = <local:MatrixElementSpan Text="a_11"/>
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,0,10,0">
+                                2.
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="1" Grid.Column="1">
+                                <Italic>n</Italic> = 2: |<local:MatrixNameSpan Text="A"/>| =
+                                <local:MatrixElementSpan Text="a_11"/> ⋅ <local:MatrixElementSpan Text="a_22"/> -
+                                <local:MatrixElementSpan Text="a_12"/> ⋅ <local:MatrixElementSpan Text="a_21"/>
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,0,10,0">
+                                3.
+                            </TextBlock>
+
+                            <StackPanel Grid.Row="2" Grid.Column="1">
+                                <TextBlock>
+                                    <Italic>n</Italic> > 1:
+                                </TextBlock>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                            
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,10,0" Text="3.1."/>
+
+                                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,0,5">
+                                        <TextBlock Text="Rozvoj podľa 1-ho riadka:"/>
+
+                                        <Grid Margin="0,0,0,5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                    
+                                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,3">
+                                                |<local:MatrixNameSpan Text="A"/>| =
+                                            </TextBlock>
+                                    
+                                            <Grid Grid.Column="1">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="16" FontStyle="Italic" Text="n" Margin="0,0,0,-5"/>
+                                                <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontSize="25" FontWeight="Light" Text="∑">
+                                                    <TextBlock.RenderTransform>
+                                                        <TransformGroup>
+                                                            <ScaleTransform ScaleX="2" ScaleY="1.5"/>
+                                                            <TranslateTransform X="-8" Y="-11"/>
+                                                        </TransformGroup>
+                                                    </TextBlock.RenderTransform>
+                                                </TextBlock>
+                                                <TextBlock Grid.Row="2" FontSize="16" HorizontalAlignment="Center" Margin="0,1,0,0">
+                                                    <Italic>j</Italic>=1
+                                                </TextBlock>
+                                            </Grid>
+                                    
+                                            <TextBlock Grid.Column="2" VerticalAlignment="Center" Margin="5,0,0,0">
+                                                (-1)<local:SuperscriptSpan Text="1+j"/> ⋅
+                                                <local:MatrixElementSpan Text="a_1j"/> ⋅
+                                                |<local:MatrixNameSpan Text="A_1j"/>| =
+                                            </TextBlock>
+                                        </Grid>
+                                
+                                        <TextBlock>
+                                            = <local:MatrixElementSpan Text="a_11"/> ⋅ |<local:MatrixNameSpan Text="A_11"/>| -
+                                            <local:MatrixElementSpan Text="a_12"/> ⋅ |<local:MatrixNameSpan Text="A_12"/>| +
+                                            <local:MatrixElementSpan Text="a_13"/> ⋅ |<local:MatrixNameSpan Text="A_13"/>| - ... +
+                                            (-1)<local:SuperscriptSpan Text="1+n"/> ⋅
+                                           <local:MatrixElementSpan Text="a_1n"/> ⋅ |<local:MatrixNameSpan Text="A_1n"/>|
+                                        </TextBlock>
+                                
+                                    </StackPanel>
+                            
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,0,10,0" Text="3.2."/>
+
+                                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,0,5">
+                                        <TextBlock>
+                                            Rozvoj podľa <Italic>i</Italic>-teho riadka:
+                                        </TextBlock>
+
+                                        <Grid Margin="0,0,0,5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,3">
+                                                |<local:MatrixNameSpan Text="A"/>| =
+                                            </TextBlock>
+
+                                            <Grid Grid.Column="1">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+
+                                                <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="16" FontStyle="Italic" Text="n" Margin="0,0,0,-5"/>
+                                                <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontSize="25" FontWeight="Light" Text="∑">
+                                                    <TextBlock.RenderTransform>
+                                                        <TransformGroup>
+                                                            <ScaleTransform ScaleX="2" ScaleY="1.5"/>
+                                                            <TranslateTransform X="-8" Y="-11"/>
+                                                        </TransformGroup>
+                                                    </TextBlock.RenderTransform>
+                                                </TextBlock>
+                                                <TextBlock Grid.Row="2" FontSize="16" HorizontalAlignment="Center" Margin="0,1,0,0">
+                                                    <Italic>j</Italic>=1
+                                                </TextBlock>
+                                            </Grid>
+
+                                            <TextBlock Grid.Column="2" VerticalAlignment="Center" Margin="5,0,0,0">
+                                                (-1)<local:SuperscriptSpan Text="i+j"/> ⋅
+                                                <local:MatrixElementSpan Text="a_ij"/> ⋅
+                                                |<local:MatrixNameSpan Text="A_ij"/>| =
+                                            </TextBlock>
+
+                                        </Grid>
+
+                                        <TextBlock>
+                                            = (-1)<local:SuperscriptSpan Text="i+1"/> ⋅
+                                            <local:MatrixElementSpan Text="a_i1"/> ⋅
+                                            |<local:MatrixNameSpan Text="A_i1"/>| +
+                                            (-1)<local:SuperscriptSpan Text="i+2"/> ⋅
+                                            <local:MatrixElementSpan Text="a_i2"/> ⋅
+                                            |<local:MatrixNameSpan Text="A_i2"/>| + ... +
+                                            (-1)<local:SuperscriptSpan Text="i+n"/> ⋅
+                                            <local:MatrixElementSpan Text="a_in"/> ⋅
+                                            |<local:MatrixNameSpan Text="A_in"/>|
+                                        </TextBlock>
+                                
+                                    </StackPanel>
+
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,0,10,0" Text="3.3."/>
+
+                                    <StackPanel Grid.Row="2" Grid.Column="1">
+                                        <TextBlock>
+                                            Rozvoj podľa <Italic>j</Italic>-teho stĺpca:
+                                        </TextBlock>
+
+                                        <Grid Margin="0,0,0,5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="0,0,5,3">
+                                                |<local:MatrixNameSpan Text="A"/>| =
+                                            </TextBlock>
+
+                                            <Grid Grid.Column="1">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="16" FontStyle="Italic" Text="n" Margin="0,0,0,-5"/>
+                                                <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontSize="25" FontWeight="Light" Text="∑">
+                                                    <TextBlock.RenderTransform>
+                                                        <TransformGroup>
+                                                            <ScaleTransform ScaleX="2" ScaleY="1.5"/>
+                                                            <TranslateTransform X="-8" Y="-11"/>
+                                                        </TransformGroup>
+                                                    </TextBlock.RenderTransform>
+                                                </TextBlock>
+                                                <TextBlock Grid.Row="2" FontSize="16" HorizontalAlignment="Center" Margin="0,1,0,0">
+                                                    <Italic>i</Italic>=1
+                                                </TextBlock>
+                                            </Grid>
+
+                                            <TextBlock Grid.Column="2" VerticalAlignment="Center" Margin="5,0,0,0">
+                                                (-1)<local:SuperscriptSpan Text="i+j"/> ⋅
+                                                <local:MatrixElementSpan Text="a_ij"/> ⋅
+                                                |<local:MatrixNameSpan Text="A_ij"/>| =
+                                            </TextBlock>
+
+                                        </Grid>
+
+                                        <TextBlock>
+                                            = (-1)<local:SuperscriptSpan Text="1+j"/> ⋅
+                                            <local:MatrixElementSpan Text="a_1j"/> ⋅
+                                            |<local:MatrixNameSpan Text="A_1j"/>| +
+                                            (-1)<local:SuperscriptSpan Text="2+j"/> ⋅
+                                            <local:MatrixElementSpan Text="a_2j"/> ⋅
+                                            |<local:MatrixNameSpan Text="A_2j"/>| + ... +
+                                            (-1)<local:SuperscriptSpan Text="n+j"/> ⋅
+                                            <local:MatrixElementSpan Text="a_nj"/> ⋅
+                                            |<local:MatrixNameSpan Text="A_nj"/>|
+                                        </TextBlock>
+                                
+                                    </StackPanel>
+
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+
+                    </StackPanel>
+                </local:PageParagraph>
+
+                <local:PageParagraph>
+                    <local:PageParagraph.Title>
+                        <TextBlock Text="Príklad"/>
+                    </local:PageParagraph.Title>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                    
+                        <TextBlock Text="1." Grid.Row="0" Grid.Column="0" Margin="0,0,10,0"/>
+
+                        <TextBlock Grid.Row="0" Grid.Column="1" Margin="0,0,0,10">
+                            <Italic>n</Italic> = 1: <LineBreak/>
+                            <local:MatrixNameSpan Text="A"/> =
+                            <InlineUIContainer BaselineAlignment="Center">
+                                <local:Matrix x:Name="matrix1" Margin="3,5,15,0"/>
+                            </InlineUIContainer>
+                            |<local:MatrixNameSpan Text="A"/>| = <local:MatrixElementSpan Text="a_11"/> = -5
+                        </TextBlock>
+
+                        <TextBlock Text="2." Grid.Row="1" Grid.Column="0" Margin="0,0,10,0"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+                            <Italic>n</Italic> = 2: <LineBreak/>
+                            <local:MatrixNameSpan Text="A"/> =
+                            <InlineUIContainer BaselineAlignment="Center">
+                                <local:Matrix x:Name="matrix2" Margin="3,5,15,0"/>
+                            </InlineUIContainer>
+                            |<local:MatrixNameSpan Text="A"/>| =
+                            (<local:MatrixElementSpan Text="a_11"/> ⋅ <local:MatrixElementSpan Text="a_22"/>) -
+                            (<local:MatrixElementSpan Text="a_12"/> ⋅ <local:MatrixElementSpan Text="a_21"/>) =
+                            (1 ⋅ 4) - (2 ⋅ 3) = -2
+                        </TextBlock>
+                    
+                        <TextBlock Text="3." Grid.Row="2" Grid.Column="0" Margin="0,0,10,0"/>
+
+                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,0,10">
+                            <TextBlock>
+                                <Italic>n</Italic> = 3 (Sarrusovo pravidlo - platí len pre matice 3×3):
+                            </TextBlock>
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock VerticalAlignment="Center" Margin="5,0,10,0">
+                                    <local:MatrixNameSpan Text="A"/> =
+                                </TextBlock>
+                                <local:Matrix Grid.Column="1" x:Name="matrix3_0"/>
+                                <TextBlock Grid.Column="2" Margin="20,0,0,0" TextWrapping="Wrap">
+                                    Prvé dva riadky skopírujeme pod maticu. <LineBreak/>
+                                    Sčítame násobky prvkov na troch hlavných diagonálach <LineBreak/>
+                                    A odpočítame násobky prvkov na troch vedľajších diagonálach.
+                                </TextBlock>
+                            </Grid>
+                            <local:StackPanelHorizontal Margin="0,10,0,0">
+                                <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,65">
+                                    |<local:MatrixNameSpan Text="A"/>| =
+                                </TextBlock>
+                                <local:Matrix Grid.Row="0" Grid.Column="1" x:Name="matrix3_1"/>
+                                <TextBlock Text="=" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="10,0,0,65"/>
+                                <Grid Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="20,0,0,39">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="1">
+                                        {<Run Text="[1⋅3⋅(-4)]" x:Name="Saurus1"/> + <Run Text="[1⋅5⋅5]" x:Name="Saurus2"/> + <Run Text="[(-2)⋅(-1)⋅3]" x:Name="Saurus3"/>}
+                                    </TextBlock>
+                                    <TextBlock Text="-" Grid.Row="0" Grid.Column="2" Margin="5,0,0,0"/>
+                                    <TextBlock Text="-" Grid.Row="1" Grid.Column="0" Margin="0,0,5,0"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="1">
+                                        {<Run Text="[5⋅3⋅(-2)]" x:Name="Saurus4"/> + <Run Text="[3⋅5⋅1]" x:Name="Saurus5"/> + <Run Text="[(-4)⋅(-1)⋅1]" x:Name="Saurus6"/>}
+                                    </TextBlock>
+                                    <TextBlock Text="= 30" Grid.Row="1" Grid.Column="2" Margin="5,0,0,0"/>
+                                </Grid>
+                            </local:StackPanelHorizontal>
+                        </StackPanel>
+
+                        <TextBlock Text="4." Grid.Row="3" Grid.Column="0" Margin="0,0,10,0"/>
+
+                        <StackPanel Grid.Row="3" Grid.Column="1" Margin="0,0,0,10">
+                            <TextBlock>
+                                <Italic>n</Italic> = 4 (rozvoj podľa 1-ho riadka):
+                            </TextBlock>
+                            <Grid Margin="0,10,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0">
+                                    <local:MatrixNameSpan Text="A"/> =
+                                </TextBlock>
+                                <local:Matrix Grid.Column="1" x:Name="matrix4_0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Grid.Column="2" VerticalAlignment="Center" Margin="15,0,0,0" TextWrapping="Wrap">
+                                    Každý prvok <local:MatrixElementSpan Text="a_1j"/> 
+                                    v prvom riadku vynásobíme determinantom podmatice <local:MatrixNameSpan Text="A_1j"/> 
+                                    ktorú získame z pôvodnej matice <local:MatrixNameSpan Text="A"/> odstránením riadku a stĺpca, 
+                                    v ktorom sa vybraný prvok nachádza.
+                                    <LineBreak/> Nezabúdame na striedavé znamienka.
+                                </TextBlock>
+
+                                <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,0,5">
+                                    |<local:MatrixNameSpan Text="A"/>| =
+                                </TextBlock>
+                                <local:Matrix Grid.Row="2" Grid.Column="1" x:Name="matrix4_1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                <local:StackPanelHorizontal Grid.Row="2" Grid.Column="2">
+                                    <TextBlock Text="=" Margin="10,0,5,5"/>
+
+                                    <local:PopupControl VerticalAlignment="Stretch" x:Name="popup4_1_0">
+                                        <local:PopupControl.TriggerElement>
+                                            <Border>
+                                                <local:HighlightBorder VerticalAlignment="Center" Tag="4_1_0" Margin="0,0,0,4"
+                                                                       MouseEnter="HighlightBorder_4_1_MouseEnter"  MouseLeave="HighlightBorder_4_1_MouseLeave">
+                                                    <TextBlock> 
+                                                        1⋅|<local:MatrixNameSpan Text="A_11"/>|
+                                                    </TextBlock>
+                                                </local:HighlightBorder>
+                                            </Border>
+                                        </local:PopupControl.TriggerElement>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="0,0,10,63" VerticalAlignment="Center"> 
+                                                    |<local:MatrixNameSpan Text="A_11"/>| =
+                                            </TextBlock>
+                                            <local:Matrix x:Name="matrix4_1_0" VerticalAlignment="Center"/>
+                                            <Grid Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="5,0,0,42">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="=" Grid.Row="0" Grid.Column="0" Margin="0,0,20,0"/>
+                                                <TextBlock Grid.Row="0" Grid.Column="1">
+                                                    [(-13)⋅12⋅(-17)] + [0⋅(-6)⋅(-8)] + [(-18)⋅(-7)⋅(-10)]
+                                                </TextBlock>
+                                                <TextBlock Text="-" Grid.Row="0" Grid.Column="2" Margin="5,0,0,0"/>
+                                                <TextBlock Text="-" Grid.Row="1" Grid.Column="0" Margin="0,0,5,0" HorizontalAlignment="Right"/>
+                                                <TextBlock Grid.Row="1" Grid.Column="1">
+                                                    [(-8)⋅12⋅(-18)] - [(-10)⋅(-6)⋅(-13)] - [(-17)⋅(-7)⋅0]
+                                                </TextBlock>
+                                                <TextBlock Text="= 444" Grid.Row="1" Grid.Column="2" Margin="5,0,0,0"/>
+                                            </Grid>
+                                        </StackPanel>
+                                    </local:PopupControl>
+
+                                    <TextBlock Text="-" Margin="5,0,5,5"/>
+
+                                    <local:PopupControl VerticalAlignment="Stretch" x:Name="popup4_1_1">
+                                        <local:PopupControl.TriggerElement>
+                                            <Border>
+                                                <local:HighlightBorder VerticalAlignment="Center" Tag="4_1_1" Margin="0,0,0,4"
+                                                                       MouseEnter="HighlightBorder_4_1_MouseEnter" MouseLeave="HighlightBorder_4_1_MouseLeave">
+                                                    <TextBlock> 5⋅|<local:MatrixNameSpan Text="A_12"/>|</TextBlock>
+                                                </local:HighlightBorder>
+                                            </Border>
+                                        </local:PopupControl.TriggerElement>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="0,0,10,63" VerticalAlignment="Center"> 
+                                                    |<local:MatrixNameSpan Text="A_12"/>| =
+                                            </TextBlock>
+                                            <local:Matrix x:Name="matrix4_1_1" VerticalAlignment="Center"/>
+                                            <Grid Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="5,0,0,42">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="=" Grid.Row="0" Grid.Column="0" Margin="0,0,20,0"/>
+                                                <TextBlock Grid.Row="0" Grid.Column="1">
+                                                    [(-3)⋅12⋅(-17)] + [2⋅(-6)⋅(-8)] + [(-4)⋅(-7)⋅(-10)]
+                                                </TextBlock>
+                                                <TextBlock Text="-" Grid.Row="0" Grid.Column="2" Margin="5,0,0,0"/>
+                                                <TextBlock Text="-" Grid.Row="1" Grid.Column="0" Margin="0,0,5,0" HorizontalAlignment="Right"/>
+                                                <TextBlock Grid.Row="1" Grid.Column="1">
+                                                    [(-8)⋅12⋅(-4)] - [(-10)⋅(-6)⋅(-3)] - [(-17)⋅(-7)⋅2]
+                                                </TextBlock>
+                                                <TextBlock Text="= -14" Grid.Row="1" Grid.Column="2" Margin="5,0,0,0"/>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </local:PopupControl>
+
+                                    <TextBlock Text="+" Margin="5,0,5,5"/>
+
+                                    <local:PopupControl VerticalAlignment="Stretch" x:Name="popup4_1_2">
+                                        <local:PopupControl.TriggerElement>
+                                            <Border>
+                                                <local:HighlightBorder VerticalAlignment="Center" Tag="4_1_2" Margin="0,0,0,4"
+                                                                       MouseEnter="HighlightBorder_4_1_MouseEnter" MouseLeave="HighlightBorder_4_1_MouseLeave">
+                                                    <TextBlock> 2⋅|<local:MatrixNameSpan Text="A_13"/>|</TextBlock>
+                                                </local:HighlightBorder>
+                                            </Border>
+                                        </local:PopupControl.TriggerElement>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="0,0,10,63" VerticalAlignment="Center"> 
+                                                |<local:MatrixNameSpan Text="A_13"/>| =
+                                            </TextBlock>
+                                            <local:Matrix x:Name="matrix4_1_2" VerticalAlignment="Center"/>
+                                            <Grid Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="5,0,0,42">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="=" Grid.Row="0" Grid.Column="0" Margin="0,0,20,0"/>
+                                                <TextBlock Grid.Row="0" Grid.Column="1">
+                                                    [(-3)⋅0⋅(-17)] + [2⋅(-18)⋅(-8)] + [(-4)⋅(-13)⋅(-10)]
+                                                </TextBlock>
+                                                <TextBlock Text="-" Grid.Row="0" Grid.Column="2" Margin="5,0,0,0"/>
+                                                <TextBlock Text="-" Grid.Row="1" Grid.Column="0" Margin="0,0,5,0" HorizontalAlignment="Right"/>
+                                                <TextBlock Grid.Row="1" Grid.Column="1">
+                                                    [(-8)⋅0⋅(-4)] - [(-10)⋅(-18)⋅(-3)] - [(-17)⋅(-13)⋅2]
+                                                </TextBlock>
+                                                <TextBlock Text="= -134" Grid.Row="1" Grid.Column="2" Margin="5,0,0,0"/>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </local:PopupControl>
+
+                                    <TextBlock Text="-" Margin="5,0,5,5"/>
+
+                                    <local:PopupControl VerticalAlignment="Stretch" x:Name="popup4_1_3">
+                                        <local:PopupControl.TriggerElement>
+                                            <Border>
+                                                <local:HighlightBorder VerticalAlignment="Center" Tag="4_1_3" Margin="0,0,0,4"
+                                                                       MouseEnter="HighlightBorder_4_1_MouseEnter" MouseLeave="HighlightBorder_4_1_MouseLeave">
+                                                    <TextBlock> 3⋅|<local:MatrixNameSpan Text="A_14"/>|</TextBlock>
+                                                </local:HighlightBorder>
+                                            </Border>
+                                        </local:PopupControl.TriggerElement>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="0,0,10,63" VerticalAlignment="Center"> 
+                                                    |<local:MatrixNameSpan Text="A_14"/>| =
+                                            </TextBlock>
+                                            <local:Matrix x:Name="matrix4_1_3" VerticalAlignment="Center"/>
+                                            <Grid Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="5,0,0,42">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="=" Grid.Row="0" Grid.Column="0" Margin="0,0,20,0"/>
+                                                <TextBlock Grid.Row="0" Grid.Column="1">
+                                                    [(-3)⋅0⋅(-6)] + [2⋅(-18)⋅(-7)] + [(-4)⋅(-13)⋅12]
+                                                </TextBlock>
+                                                <TextBlock Text="-" Grid.Row="0" Grid.Column="2" Margin="5,0,0,0"/>
+                                                <TextBlock Text="-" Grid.Row="1" Grid.Column="0" Margin="0,0,5,0" HorizontalAlignment="Right"/>
+                                                <TextBlock Grid.Row="1" Grid.Column="1">
+                                                    [(-7)⋅0⋅(-4)] - [12⋅(-18)⋅(-3)] - [(-6)⋅(-13)⋅2]
+                                                </TextBlock>
+                                                <TextBlock Text="= 72" Grid.Row="1" Grid.Column="2" Margin="5,0,0,0"/>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </local:PopupControl>
+
+                                    <TextBlock Text="=" Margin="5,0,5,5"/>
+
+                                    <local:PopupControl VerticalAlignment="Stretch" x:Name="popup4_1_4">
+                                        <local:PopupControl.TriggerElement>
+                                            <Border>
+                                                <local:HighlightBorder VerticalAlignment="Center" Margin="0,0,0,4">
+                                                    <TextBlock Text="30"/>
+                                                </local:HighlightBorder>
+                                            </Border>
+                                        </local:PopupControl.TriggerElement>
+                                        <TextBlock>
+                                            1⋅444 - 5⋅(-14) + 2⋅(-134) - 3⋅72 = 30
+                                        </TextBlock>
+                                    </local:PopupControl>
+                                    
+                                </local:StackPanelHorizontal>
+                            </Grid>
+                        </StackPanel>
+                    
+                        <TextBlock Text="5." Grid.Row="4" Grid.Column="0" Margin="0,0,10,0"/>
+
+                        <StackPanel Grid.Row="4" Grid.Column="1" Margin="0,0,0,10">
+                            <TextBlock>
+                                <Italic>n</Italic> = 4 (rozvoj podľa <Italic>i</Italic>-teho riadka):
+                            </TextBlock>
+                            <Grid Margin="0,10,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0">
+                                    <local:MatrixNameSpan Text="A"/> =
+                                </TextBlock>
+                                <local:Matrix Grid.Column="1" x:Name="matrix5_0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBlock Grid.Column="2" VerticalAlignment="Center" Margin="15,0,0,0" TextWrapping="Wrap">
+                                    Podobný spôsob ako pri rozvoji podľa 1-ho riadka. <LineBreak/>
+                                    Znamienka sa tiež striedajú, ale už nemusia začínať plusom. <LineBreak/>
+                                    Ak by nejaký prvok v riadku bol nulový, potom môžeme nepočítať determinant podmatice, 
+                                    pretože po vynásobení nulou dostaneme 0. Preto v tomto príklade si zvolíme riadok 3, v ktorom 
+                                    <local:MatrixElementSpan Text="a_32"/> = 0.
+                                </TextBlock>
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,8,0,0">
+                                    |<local:MatrixNameSpan Text="A"/>| =
+                                </TextBlock>
+                                <local:Matrix Grid.Row="1" Grid.Column="1" x:Name="matrix5_1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0"/>
+                                
+                                <local:StackPanelHorizontal Grid.Row="1" Grid.Column="2" Margin="0,8,0,0">
+                                    <TextBlock Text="=" Margin="5,0,5,5"/>
+                                    
+                                    <local:PopupControl VerticalAlignment="Stretch" x:Name="popup5_1_0">
+                                        <local:PopupControl.TriggerElement>
+                                            <Border>
+                                                <local:HighlightBorder VerticalAlignment="Center" Margin="0,0,0,4">
+                                                    <TextBlock> (-1)<local:SuperscriptSpan Text="3+1"/></TextBlock>
+                                                </local:HighlightBorder>
+                                            </Border>
+                                        </local:PopupControl.TriggerElement>
+                                        <TextBlock TextAlignment="Center">
+                                            (-1)<local:SuperscriptSpan Text="3+1"/> = (-1)<local:SuperscriptSpan Text="4"/> = 1
+                                            ➔ znamienko bude '+' <LineBreak/> ďalšie znamienka sa striedajú
+                                        </TextBlock>
+                                    </local:PopupControl>
+
+                                    <TextBlock Text="⋅" Margin="2,0,2,5"/>
+
+                                    <local:PopupControl VerticalAlignment="Stretch" x:Name="popup5_1_1">
+                                        <local:PopupControl.TriggerElement>
+                                            <Border>
+                                                <local:HighlightBorder VerticalAlignment="Center" Tag="5_1_1" Margin="0,0,0,4"
+                                                                       MouseEnter="HighlightBorder_5_1_MouseEnter" MouseLeave="HighlightBorder_5_1_MouseLeave">
+                                                    <TextBlock> 2⋅|<local:MatrixNameSpan Text="A_31"/>| </TextBlock>
+                                                </local:HighlightBorder>
+                                            </Border>
+                                        </local:PopupControl.TriggerElement>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="0,0,10,63" VerticalAlignment="Center"> 
+                                                |<local:MatrixNameSpan Text="A_31"/>| =
+                                            </TextBlock>
+                                            <local:Matrix x:Name="matrix5_1_1" VerticalAlignment="Center"/>
+                                            <Grid Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="5,0,0,42">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="=" Grid.Row="0" Grid.Column="0" Margin="0,0,20,0"/>
+                                                <TextBlock Grid.Row="0" Grid.Column="1">
+                                                    [5⋅(-7)⋅(-17)] + [(-13)⋅(-6)⋅3] + [(-18)⋅2⋅(-8)]
+                                                </TextBlock>
+                                                <TextBlock Text="-" Grid.Row="0" Grid.Column="2" Margin="5,0,0,0"/>
+                                                <TextBlock Text="-" Grid.Row="1" Grid.Column="0" Margin="0,0,5,0" HorizontalAlignment="Right"/>
+                                                <TextBlock Grid.Row="1" Grid.Column="1">
+                                                    [3⋅(-7)⋅(-18)] - [(-8)⋅(-6)⋅5] - [(-17)⋅2⋅(-13)]
+                                                </TextBlock>
+                                                <TextBlock Text="= 57" Grid.Row="1" Grid.Column="2" Margin="5,0,0,0"/>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </local:PopupControl>
+
+                                    <TextBlock Text="-" Margin="5,0,5,5"/>
+
+                                    <local:PopupControl VerticalAlignment="Stretch" x:Name="popup5_1_2">
+                                        <local:PopupControl.TriggerElement>
+                                            <Border>
+                                                <local:HighlightBorder VerticalAlignment="Center" Tag="5_1_2" Margin="0,0,0,4"
+                                                                       MouseEnter="HighlightBorder_5_1_MouseEnter" MouseLeave="HighlightBorder_5_1_MouseLeave">
+                                                    <TextBlock> 0⋅|<local:MatrixNameSpan Text="A_32"/>| </TextBlock>
+                                                </local:HighlightBorder>
+                                            </Border>
+                                        </local:PopupControl.TriggerElement>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock> 
+                                                0⋅|<local:MatrixNameSpan Text="A_32"/>| = 0
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </local:PopupControl>
+
+                                    <TextBlock Text="+" Margin="5,0,5,5"/>
+
+                                    <local:PopupControl VerticalAlignment="Stretch" x:Name="popup5_1_3">
+                                        <local:PopupControl.TriggerElement>
+                                            <Border>
+                                                <local:HighlightBorder VerticalAlignment="Center" Tag="5_1_3" Margin="0,0,0,4"
+                                                                       MouseEnter="HighlightBorder_5_1_MouseEnter" MouseLeave="HighlightBorder_5_1_MouseLeave">
+                                                    <TextBlock> 12⋅|<local:MatrixNameSpan Text="A_33"/>| </TextBlock>
+                                                </local:HighlightBorder>
+                                            </Border>
+                                        </local:PopupControl.TriggerElement>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="0,0,10,63" VerticalAlignment="Center"> 
+                                                |<local:MatrixNameSpan Text="A_33"/>| =
+                                            </TextBlock>
+                                            <local:Matrix x:Name="matrix5_1_3" VerticalAlignment="Center"/>
+                                            <Grid Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="5,0,0,42">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="=" Grid.Row="0" Grid.Column="0" Margin="0,0,20,0"/>
+                                                <TextBlock Grid.Row="0" Grid.Column="1">
+                                                    [1⋅(-13)⋅(-17)] + [(-3)⋅(-18)⋅3] + [(-4)⋅5⋅(-8)]
+                                                </TextBlock>
+                                                <TextBlock Text="-" Grid.Row="0" Grid.Column="2" Margin="5,0,0,0"/>
+                                                <TextBlock Text="-" Grid.Row="1" Grid.Column="0" Margin="0,0,5,0" HorizontalAlignment="Right"/>
+                                                <TextBlock Grid.Row="1" Grid.Column="1">
+                                                    [3⋅(-13)⋅(-4)] - [(-8)⋅(-18)⋅1] - [(-17)⋅5⋅(-3)]
+                                                </TextBlock>
+                                                <TextBlock Text="= -12" Grid.Row="1" Grid.Column="2" Margin="5,0,0,0"/>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </local:PopupControl>
+
+                                    <TextBlock Text="-" Margin="5,0,5,5"/>
+
+                                    <local:PopupControl VerticalAlignment="Stretch" x:Name="popup5_1_4">
+                                        <local:PopupControl.TriggerElement>
+                                            <Border>
+                                                <local:HighlightBorder VerticalAlignment="Center" Tag="5_1_4" Margin="0,0,0,4"
+                                                                       MouseEnter="HighlightBorder_5_1_MouseEnter" MouseLeave="HighlightBorder_5_1_MouseLeave">
+                                                    <TextBlock> (-10)⋅|<local:MatrixNameSpan Text="A_34"/>| </TextBlock>
+                                                </local:HighlightBorder>
+                                            </Border>
+                                        </local:PopupControl.TriggerElement>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="0,0,10,63" VerticalAlignment="Center"> 
+                                                |<local:MatrixNameSpan Text="A_34"/>| =
+                                            </TextBlock>
+                                            <local:Matrix x:Name="matrix5_1_4" VerticalAlignment="Center"/>
+                                            <Grid Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="5,0,0,42">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="=" Grid.Row="0" Grid.Column="0" Margin="0,0,20,0"/>
+                                                <TextBlock Grid.Row="0" Grid.Column="1">
+                                                    [1⋅(-13)⋅(-6)] + [(-3)⋅(-18)⋅2] + [(-4)⋅5⋅(-7)]
+                                                </TextBlock>
+                                                <TextBlock Text="-" Grid.Row="0" Grid.Column="2" Margin="5,0,0,0"/>
+                                                <TextBlock Text="-" Grid.Row="1" Grid.Column="0" Margin="0,0,5,0" HorizontalAlignment="Right"/>
+                                                <TextBlock Grid.Row="1" Grid.Column="1">
+                                                    [2⋅(-13)⋅(-4)] - [(-7)⋅(-18)⋅1] - [(-6)⋅5⋅(-3)]
+                                                </TextBlock>
+                                                <TextBlock Text="= 6" Grid.Row="1" Grid.Column="2" Margin="5,0,0,0"/>
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </local:PopupControl>
+
+                                    <TextBlock Text="=" Margin="5,0,5,5"/>
+
+                                    <local:PopupControl VerticalAlignment="Stretch" x:Name="popup5_1_5">
+                                        <local:PopupControl.TriggerElement>
+                                            <Border>
+                                                <local:HighlightBorder VerticalAlignment="Center" Margin="0,0,0,4">
+                                                    <TextBlock Text="30"/>
+                                                </local:HighlightBorder>
+                                            </Border>
+                                        </local:PopupControl.TriggerElement>
+                                        <TextBlock Text="2⋅57 - 0 + 12⋅(-12) - (-10)⋅6 = 30"/>
+                                    </local:PopupControl>
+
+
+                                </local:StackPanelHorizontal>
+
+                                
+                            </Grid>
+                        </StackPanel>
+                    
+                        <TextBlock Text="6." Grid.Row="5" Grid.Column="0" Margin="0,0,10,0"/>
+
+                        <StackPanel Grid.Row="5" Grid.Column="1">
+                            <TextBlock>
+                                <Italic>n</Italic> = 4 (rozvoj podľa <Italic>j</Italic>-teho stľpca + 
+                                zjednodušenie pomocou riadkových úprav):
+                            </TextBlock>
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0">
+                                    <local:MatrixNameSpan Text="A"/> =
+                                </TextBlock>
+                                <local:Matrix Grid.Column="1" x:Name="matrix6_0" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="2" Margin="10,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap">
+                                    Podobný spôsob ako pri rozvoji podľa <Italic>i</Italic>-teho riadka, 
+                                    ale už počítame podľa prvkov z vybraného stĺpca. <LineBreak/>
+                                    Podľa vety, ak k riadku pripočítame násobok iného riadku, determinant sa nezmení. <LineBreak/>
+                                    Preto môžeme maticu zjednodušiť: pomocou riadkových operácií necháme vo vybranom stĺpci iba jeden nenulový prvok. 
+                                    Potom môžeme vypočítať iba determinant podmatice pre tento prvok, pretože všetky ostatné po vynásobení budú dávať nulu.
+                                </TextBlock>
+                            </Grid>
+                            <WrapPanel>
+                                <local:StackPanelHorizontal VerticalAlignment="Bottom" Margin="0,15,10,0">
+                                    <local:Matrix x:Name="matrix6_1"/>
+                                    <TextBlock Text="≈"/>
+                                </local:StackPanelHorizontal>
+                                <local:StackPanelHorizontal VerticalAlignment="Bottom" Margin="0,15,10,0">
+                                    <local:Matrix x:Name="matrix6_2"/>
+                                    <TextBlock Text="≈"/>
+                                </local:StackPanelHorizontal>
+                                <local:StackPanelHorizontal VerticalAlignment="Bottom" Margin="0,15,10,0">
+                                    <local:Matrix x:Name="matrix6_3"/>
+                                    <TextBlock Text="≈"/>
+                                </local:StackPanelHorizontal>
+                                <local:Matrix x:Name="matrix6_4" VerticalAlignment="Bottom" Margin="0,15,0,0"/>
+                            </WrapPanel>
+                            <TextBlock Margin="0,10,0,0">
+                                <Run Text="Možnosť 1" FontWeight="SemiBold"/> - počítame podľa 1-ho stľpca:
+                            </TextBlock>
+                            <local:StackPanelHorizontal Margin="0,8,0,0">
+                                <TextBlock Margin="0,0,10,0">
+                                    |<local:MatrixNameSpan Text="A"/>| =
+                                </TextBlock>
+                                <local:Matrix x:Name="matrix6_5" Margin="0,2,0,0"/>
+                                
+                                <TextBlock Text="=" Margin="5,0,5,5"/>
+
+                                <local:PopupControl VerticalAlignment="Stretch" x:Name="popup6_5_0">
+                                    <local:PopupControl.TriggerElement>
+                                        <Border>
+                                            <local:HighlightBorder VerticalAlignment="Center" Margin="0,0,0,4">
+                                                <TextBlock> (-1)<local:SuperscriptSpan Text="1+1"/> </TextBlock>
+                                            </local:HighlightBorder>
+                                        </Border>
+                                    </local:PopupControl.TriggerElement>
+                                    <TextBlock TextAlignment="Center">
+                                        (-1)<local:SuperscriptSpan Text="1+1"/> = (-1)<local:SuperscriptSpan Text="2"/> = 1
+                                        ➔ znamienko bude '+'
+                                    </TextBlock>
+                                </local:PopupControl>
+
+                                <TextBlock Text="⋅" Margin="2,0,2,5"/>
+
+                                <local:PopupControl VerticalAlignment="Stretch" x:Name="popup6_5_1">
+                                    <local:PopupControl.TriggerElement>
+                                        <Border>
+                                            <local:HighlightBorder VerticalAlignment="Center" Tag="6_5_1" Margin="0,0,0,4"
+                                                                    MouseEnter="HighlightBorder_6_5_MouseEnter" MouseLeave="HighlightBorder_6_5_MouseLeave">
+                                                <TextBlock> 1⋅|<local:MatrixNameSpan Text="A_11"/>|</TextBlock>
+                                            </local:HighlightBorder>
+                                        </Border>
+                                    </local:PopupControl.TriggerElement>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Margin="0,0,10,63" VerticalAlignment="Center"> 
+                                            |<local:MatrixNameSpan Text="A_11"/>| =
+                                        </TextBlock>
+                                        <local:Matrix x:Name="matrix6_5_1" VerticalAlignment="Center"/>
+                                        <Grid Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="5,0,0,42">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="=" Grid.Row="0" Grid.Column="0" Margin="0,0,20,0"/>
+                                            <TextBlock Grid.Row="0" Grid.Column="1">
+                                                [2⋅8⋅(-5)] + [(-10)⋅2⋅1] + [2⋅(-1)⋅(-16)]
+                                            </TextBlock>
+                                            <TextBlock Text="-" Grid.Row="0" Grid.Column="2" Margin="5,0,0,0"/>
+                                            <TextBlock Text="-" Grid.Row="1" Grid.Column="0" Margin="0,0,5,0" HorizontalAlignment="Right"/>
+                                            <TextBlock Grid.Row="1" Grid.Column="1">
+                                                [1⋅8⋅2] - [(-16)⋅2⋅2] - [(-5)⋅(-1)⋅(-10)]
+                                            </TextBlock>
+                                            <TextBlock Text="= 30" Grid.Row="1" Grid.Column="2" Margin="5,0,0,0"/>
+                                        </Grid>
+
+
+                                    </StackPanel>
+                                </local:PopupControl>
+
+                                <TextBlock Text="-" Margin="5,0,5,5"/>
+
+                                <local:PopupControl VerticalAlignment="Stretch" x:Name="popup6_5_2">
+                                    <local:PopupControl.TriggerElement>
+                                        <Border>
+                                            <local:HighlightBorder VerticalAlignment="Center" Margin="0,0,0,4">
+                                                <TextBlock> 0⋅|<local:MatrixNameSpan Text="A_21"/>|</TextBlock>
+                                            </local:HighlightBorder>
+                                        </Border>
+                                    </local:PopupControl.TriggerElement>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock> 
+                                            0⋅|<local:MatrixNameSpan Text="A_21"/>| = 0
+                                        </TextBlock>
+                                    </StackPanel>
+                                </local:PopupControl>
+
+                                <TextBlock Text="+" Margin="5,0,5,5"/>
+
+                                <local:PopupControl VerticalAlignment="Stretch" x:Name="popup6_5_3">
+                                    <local:PopupControl.TriggerElement>
+                                        <Border>
+                                            <local:HighlightBorder VerticalAlignment="Center" Margin="0,0,0,4">
+                                                <TextBlock> 0⋅|<local:MatrixNameSpan Text="A_31"/>|</TextBlock>
+                                            </local:HighlightBorder>
+                                        </Border>
+                                    </local:PopupControl.TriggerElement>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock> 
+                                            0⋅|<local:MatrixNameSpan Text="A_31"/>| = 0
+                                        </TextBlock>
+                                    </StackPanel>
+                                </local:PopupControl>
+
+                                <TextBlock Text="-" Margin="5,0,5,5"/>
+
+                                <local:PopupControl VerticalAlignment="Stretch" x:Name="popup6_5_4">
+                                    <local:PopupControl.TriggerElement>
+                                        <Border>
+                                            <local:HighlightBorder VerticalAlignment="Center" Margin="0,0,0,4">
+                                                <TextBlock> 0⋅|<local:MatrixNameSpan Text="A_41"/>|</TextBlock>
+                                            </local:HighlightBorder>
+                                        </Border>
+                                    </local:PopupControl.TriggerElement>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock> 
+                                            0⋅|<local:MatrixNameSpan Text="A_41"/>| = 0
+                                        </TextBlock>
+                                    </StackPanel>
+                                </local:PopupControl>
+
+                                <TextBlock Text="=" Margin="5,0,5,5"/>
+
+                                <local:PopupControl VerticalAlignment="Stretch" x:Name="popup6_5_5">
+                                    <local:PopupControl.TriggerElement>
+                                        <Border>
+                                            <local:HighlightBorder VerticalAlignment="Center" Margin="0,0,0,4">
+                                                <TextBlock Text="30"/>
+                                            </local:HighlightBorder>
+                                        </Border>
+                                    </local:PopupControl.TriggerElement>
+                                    <TextBlock Text="1⋅30 - 0 + 0 - 0 = 30"/>
+                                </local:PopupControl>
+                            </local:StackPanelHorizontal>
+                            <TextBlock Margin="0,10,0,0" TextWrapping="Wrap">
+                                <Run Text="Možnosť 2" FontWeight="SemiBold"/> - pokračujeme v riadkových operáciach: <LineBreak/>
+                                Podľa vety, determinant trojuholníkovej matice sa rovná súčinu prvkov na jej hlavnej diagonále.
+                            </TextBlock>
+                            <WrapPanel>
+                                <local:StackPanelHorizontal VerticalAlignment="Bottom" Margin="0,15,10,0">
+                                    <local:Matrix x:Name="matrix6_6"/>
+                                    <TextBlock Text="≈" Margin="5,0,0,0"/>
+                                </local:StackPanelHorizontal>
+                                <local:StackPanelHorizontal VerticalAlignment="Bottom" Margin="0,15,10,0">
+                                    <local:Matrix x:Name="matrix6_7"/>
+                                    <TextBlock Text="≈" Margin="5,0,0,0"/>
+                                </local:StackPanelHorizontal>
+                                <local:StackPanelHorizontal VerticalAlignment="Bottom" Margin="0,15,10,0">
+                                    <local:Matrix x:Name="matrix6_8"/>
+                                    <TextBlock Text="≈" Margin="5,0,0,0"/>
+                                </local:StackPanelHorizontal>
+                                <local:Matrix x:Name="matrix6_9" VerticalAlignment="Bottom" Margin="0,15,0,0"/>
+                            </WrapPanel>
+                            <local:StackPanelHorizontal>
+                                <TextBlock Margin="0,8,10,0">
+                                    |<local:MatrixNameSpan Text="A"/>| =
+                                </TextBlock>
+                                <local:Matrix x:Name="matrix6_10" Margin="0,10,10,0"/>
+                                <TextBlock Margin="0,8,0,0">
+                                    = 1 ⋅ 2 ⋅ 3 ⋅ 5 = 30
+                                </TextBlock>
+                            </local:StackPanelHorizontal>
+                        </StackPanel>
+                    </Grid>
+
+                </local:PageParagraph>
+
+                <local:PageParagraph>
+                    <local:PageParagraph.Title>
+                        <TextBlock Text="Vlastnosti"/>
+                    </local:PageParagraph.Title>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                    
+                        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,10,0">
+                            1.
+                        </TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,10">
+                            <Run FontWeight="SemiBold">Determinant jednotkovej matice:</Run> <LineBreak/>
+                            |<local:MatrixNameSpan Text="E"/>| = 1
+                        </TextBlock>
+                    
+                        <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,0,10,0">
+                            2.
+                        </TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,10">
+                            <Run FontWeight="SemiBold">Determinant transponovanej matice:</Run> <LineBreak/>
+                            |<local:MatrixNameSpan Text="A^T"/>| = |<local:MatrixNameSpan Text="A"/>|
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,0,10,0">
+                            3.
+                        </TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,10">
+                            <Run FontWeight="SemiBold">Determinant súčinu matíc:</Run> <LineBreak/>
+                            |<local:MatrixNameSpan Text="A"/> ⋅ <local:MatrixNameSpan Text="B"/>| = |<local:MatrixNameSpan Text="A"/>| ⋅ |<local:MatrixNameSpan Text="B"/>|
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Margin="0,0,10,0">
+                            4.
+                        </TextBlock>
+                        <StackPanel Grid.Row="3" Grid.Column="1" Margin="0,0,0,7">
+                            <TextBlock>
+                                <Run FontWeight="SemiBold">Determinant inverznej matice:</Run>
+                            </TextBlock>
+                            <TextBlock>
+                                |<local:MatrixNameSpan Text="A^-1"/>| =
+                                <InlineUIContainer BaselineAlignment="Center">
+                                    <local:Fraction Margin="0,2,0,0">
+                                        <local:Fraction.Numerator>
+                                            <TextBlock Text="1"/>
+                                        </local:Fraction.Numerator>
+                                        <local:Fraction.Denominator>
+                                            <TextBlock>
+                                                |<local:MatrixNameSpan Text="A"/>|
+                                            </TextBlock>
+                                        </local:Fraction.Denominator>
+                                    </local:Fraction>
+                                </InlineUIContainer>
+                            </TextBlock>
+                        </StackPanel>
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Margin="0,0,10,0">
+                            5.
+                        </TextBlock>
+                        <TextBlock Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,10">
+                            <Run FontWeight="SemiBold">Determinant trojuholníkovej matice:</Run> <LineBreak/>
+                            Determinant trojuholníkovej matice sa rovná súčinu prvkov na jej hlavnej diagonále.
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="5" Grid.Column="0" Margin="0,0,10,0">
+                            6.
+                        </TextBlock>
+                        <TextBlock Grid.Row="5" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,10">
+                            <Run FontWeight="SemiBold">Nulový stĺpec/riadok:</Run> <LineBreak/>
+                            Ak sa všetky prvky niektorého riadka (stĺpca) matice <local:MatrixNameSpan Text="A"/>
+                            rovnajú nule, tak |<local:MatrixNameSpan Text="A"/>| = 0.
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="6" Grid.Column="0" Margin="0,0,10,0">
+                            7.
+                        </TextBlock>
+                        <TextBlock Grid.Row="6" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,10">
+                            <Run FontWeight="SemiBold">Rovnaké riadky/stĺpce:</Run> <LineBreak/>
+                            Ak matica <local:MatrixNameSpan Text="A"/> má dva rovnaké riadky (stĺpce), tak
+                            |<local:MatrixNameSpan Text="A"/>| = 0.
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="7" Grid.Column="0" Margin="0,0,10,0">
+                            8.
+                        </TextBlock>
+                        <TextBlock Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,10">
+                            <Run FontWeight="SemiBold">Výmena riadkov:</Run> <LineBreak/>
+                            Ak vymeníme ľubovoľné dva riadky, determinant zmení svoje znamienko. <LineBreak/>
+                            Ak (<local:MatrixElementSpan Text="R_i"/> ↔ <local:MatrixElementSpan Text="R_j"/>)
+                            tak |<local:MatrixNameSpan Text="A"/><Run FontWeight="ExtraBold">′</Run>| =
+                            -|<local:MatrixNameSpan Text="A"/>| <LineBreak/>
+                            kde <local:MatrixNameSpan Text="A"/> je pôvodná matica, 
+                            <local:MatrixNameSpan Text="A"/><Run FontWeight="ExtraBold">′</Run>
+                            je výsledná matica (po výmene riadkov).
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="8" Grid.Column="0" Margin="0,0,10,0">
+                            9.
+                        </TextBlock>
+                        <TextBlock Grid.Row="8" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,10">
+                            <Run FontWeight="SemiBold">Násobenie riadku:</Run> <LineBreak/>
+                            Ak vynásobíme riadok číslom <Italic>k</Italic>, determinant sa vynásobí týmto číslom. <LineBreak/>
+                            Ak (<local:MatrixElementSpan Text="R_i"/> → <Italic>k</Italic><local:MatrixElementSpan Text="R_j"/>)
+                            tak |<local:MatrixNameSpan Text="A"/><Run FontWeight="ExtraBold">′</Run>| =
+                            <Italic>k</Italic>|<local:MatrixNameSpan Text="A"/>|
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="9" Grid.Column="0" Margin="0,0,10,0">
+                            10.
+                        </TextBlock>
+                        <TextBlock Grid.Row="9" Grid.Column="1" TextWrapping="Wrap">
+                            <Run FontWeight="SemiBold">Súčet riadkov:</Run> <LineBreak/>
+                            Ak k riadku pripočítame násobok iného riadku, determinant sa nezmení. <LineBreak/>
+                            Ak (<local:MatrixElementSpan Text="R_i"/> →
+                            <local:MatrixElementSpan Text="R_i"/> +
+                            <Italic>k</Italic><local:MatrixElementSpan Text="R_j"/>)
+                            tak |<local:MatrixNameSpan Text="A"/><Run FontWeight="ExtraBold">′</Run>| =
+                            |<local:MatrixNameSpan Text="A"/>|
+                        </TextBlock>
+                    </Grid>
+
+                </local:PageParagraph>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

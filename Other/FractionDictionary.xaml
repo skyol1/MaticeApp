@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MaticeApp">
+    <ControlTemplate x:Key="FractionDictionary" TargetType="local:Fraction">
+        <StackPanel>
+            <ContentControl Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Numerator}"
+                            HorizontalAlignment="Center"/>
+            <Rectangle Height="2" Fill="Black" Margin="0,-2,0,-3"/>
+            <ContentControl Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Denominator}"
+                            HorizontalAlignment="Center"/>
+        </StackPanel>
+    </ControlTemplate>
+</ResourceDictionary>

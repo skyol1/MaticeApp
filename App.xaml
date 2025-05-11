@@ -1,0 +1,66 @@
+﻿<Application x:Class="MaticeApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MaticeApp"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Merged Dictionaries -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Other/PageParagraphDictionary.xaml" />
+                <ResourceDictionary Source="Other/PopupControlDictionary.xaml" />
+                <ResourceDictionary Source="Other/FractionDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Global Styles -->
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+
+            <Style TargetType="Run">
+                <Setter Property="ToolTipService.InitialShowDelay" Value="0"/>
+            </Style>
+
+            <Style TargetType="TextBox">
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="3,0,3,0"/>
+            </Style>
+
+            <Style TargetType="InlineUIContainer">
+                <Setter Property="BaselineAlignment" Value="Bottom"/>
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="Padding" Value="5,0,5,0"/>
+                <Setter Property="ToolTipService.InitialShowDelay" Value="0"/>
+            </Style>
+            
+            <Style TargetType="RowDefinition">
+                <Setter Property="Height" Value="Auto"/>
+            </Style>
+
+            <Style TargetType="ColumnDefinition">
+                <Setter Property="Width" Value="Auto"/>
+            </Style>
+
+            <Style TargetType="local:PageParagraph">
+                <Setter Property="Template" Value="{StaticResource ResourceKey=PageParagraphDictionary}"/>
+                <Setter Property="Margin" Value="0, 20, 0, 0"/>
+            </Style>
+
+            <Style TargetType="local:PopupControl">
+                <Setter Property="Template" Value="{StaticResource ResourceKey=PopupControlDictionary}"/>
+            </Style>
+
+            <Style TargetType="local:Fraction">
+                <Setter Property="Template" Value="{StaticResource ResourceKey=FractionDictionary}"/>
+            </Style>
+
+            <Style TargetType="local:PagePanel">
+                <Setter Property="Margin" Value="0, 20, 0, 0"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>

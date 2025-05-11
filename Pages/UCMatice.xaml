@@ -1,0 +1,227 @@
+﻿<UserControl x:Class="MaticeApp.UCMatice"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaticeApp"
+             mc:Ignorable="d"
+             d:Background="#FFE6E6E6"
+             d:DesignWidth="800">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="8,10,10,50">
+                
+                <local:PageTitle>
+                    <local:PageTitle.TitleContent>
+                        <TextBlock Text="Matica"/>
+                    </local:PageTitle.TitleContent>
+                </local:PageTitle>
+
+                <local:PagePanel Margin="0,10,0,0">
+                    <TextBlock TextWrapping="Wrap">
+                        Matica je obdĺžnikové usporiadanie prvkov (napríklad reálnych čísel) v riadkoch a stĺpcoch. <LineBreak/>
+                        Každé číslo v matici sa nazýva prvok. <LineBreak/>
+                        Matice sa označujú veľkými písmenami (napr. <local:MatrixNameSpan Text="A"/>) a môžu mať rôzne veľkosti, 
+                        ktoré označujeme ako rozmery (napr. matica typu 2×3 má 2 riadky a 3 stĺpce). <LineBreak/>
+                        Každý prvok matice je označený malým písmenom 
+                        <local:NoBreakSpan>(napr. <local:MatrixElementSpan Text="a_ij"/>),</local:NoBreakSpan>
+                        kde index <Italic>i</Italic> znamená riadok prvku a index <Italic>j</Italic> znamená stĺpec.
+                    </TextBlock>
+                </local:PagePanel>
+
+                <local:PageParagraph x:Name="paragraphDefinicia">
+                    <local:PageParagraph.Title>
+                        <TextBlock Text="Definícia"/>
+                    </local:PageParagraph.Title>
+                    <StackPanel>
+
+                        <TextBlock TextWrapping="Wrap">
+                            Nech <Italic>m, n</Italic> sú prirodzené čísla. 
+                            Systém <Italic>m · n</Italic> prvkov nejakej množiny <local:MatrixNameSpan Text="M"/> 
+                            usporiadaných do <Italic>m</Italic> riadkov a <Italic>n</Italic> stľpcov 
+                            sa nazýva matica typu <Italic>m×n</Italic> s hodnotami v <local:MatrixNameSpan Text="M"/>. <LineBreak/>
+                            Oznacuje sa <local:MatrixNameSpan Text="A"/>(<local:MatrixElementSpan Text="a_ij"/>), 
+                            kde <local:NoBreakSpan><Italic>i</Italic> = 1, ..., <Italic>m</Italic>;</local:NoBreakSpan>
+                            <local:NoBreakSpan><Italic>j</Italic> = 1, ..., <Italic>n</Italic>,</local:NoBreakSpan> alebo
+                        </TextBlock>
+                        
+                        <local:StackPanelHorizontal Margin="5,15,0,0">
+                            <TextBlock>
+                                <local:MatrixNameSpan Text="A"/> =
+                            </TextBlock>
+                            <local:Matrix x:Name="matrix1" Margin="10,0,0,0"/>
+                        </local:StackPanelHorizontal>
+                        
+                    </StackPanel>
+                </local:PageParagraph>
+
+                <local:PageParagraph>
+                    <local:PageParagraph.Title>
+                        <TextBlock Text="Hlavná diagonála"/>
+                    </local:PageParagraph.Title>
+
+                    <local:StackPanelHorizontal Margin="20,15,0,10">
+                        <local:Matrix x:Name="matrix2"/>
+                        <local:Matrix x:Name="matrix3" Margin="30,0,30,0"/>
+                        <local:Matrix x:Name="matrix4"/>
+                    </local:StackPanelHorizontal>
+                </local:PageParagraph>
+
+                <local:PageParagraph>
+                    <local:PageParagraph.Title>
+                        <TextBlock Text="Vedľajšia diagonála"/>
+                    </local:PageParagraph.Title>
+                    
+                    <local:StackPanelHorizontal Margin="20,15,0,10">
+                        <local:Matrix x:Name="matrix5"/>
+                        <local:Matrix x:Name="matrix6" Margin="30,0,30,0"/>
+                        <local:Matrix x:Name="matrix7"/>
+                    </local:StackPanelHorizontal>
+                </local:PageParagraph>
+
+                <local:PageParagraph>
+                    <local:PageParagraph.Title>
+                        <TextBlock Text="Štvorcová matica"/>
+                    </local:PageParagraph.Title>
+
+                    <TextBlock TextWrapping="Wrap">
+                        Matica typu <Italic>m×n</Italic>
+                        sa nazýva štvorcová, ak <local:NoBreakSpan><Italic>m</Italic> = <Italic>n</Italic>:</local:NoBreakSpan>
+                        2×2, 3×3, 4×4, ..., <Italic>n×n</Italic>.
+                    </TextBlock>
+                </local:PageParagraph>
+
+                <local:PageParagraph>
+                    <local:PageParagraph.Title>
+                        <TextBlock Text="Riadkový vektor / stĺpcový vektor"/>
+                    </local:PageParagraph.Title>
+                    <StackPanel>
+                        <TextBlock TextWrapping="Wrap" Margin="0,10,0,0">
+                            Riadkový vektor je matica, ktorá má jeden riadok a <Italic>n</Italic> stĺpcov; <LineBreak/>
+                            Stĺpcový vektor je matica, ktorá má jeden stĺpec a <Italic>m</Italic> riadkov.
+                        </TextBlock>
+
+                        <Grid HorizontalAlignment="Left" Margin="5,10,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                                Riadkový vektor
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0">
+                                <local:MatrixNameSpan Text="r"/> =
+                            </TextBlock>
+
+                            <local:Matrix x:Name="matrix8" Grid.Row="1" Grid.Column="1"/>
+
+                            <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="20,0,0,0">
+                                Stĺpcový vektor
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="30,0,10,0">
+                                <local:MatrixNameSpan Text="c"/> =
+                            </TextBlock>
+
+                            <local:Matrix x:Name="matrix9" Grid.Row="1" Grid.Column="3"/>
+
+                        </Grid>
+                    </StackPanel>
+                </local:PageParagraph>
+
+                <local:PageParagraph>
+                    <local:PageParagraph.Title>
+                        <TextBlock Text="Nulová matica"/>
+                    </local:PageParagraph.Title>
+                    <StackPanel>
+                        <TextBlock>
+                            Nulová matica je matica, v ktorej sa všetky prvky rovnajú nule:
+                        </TextBlock>
+
+                        <local:StackPanelHorizontal Margin="5,15,0,0">
+                            <TextBlock VerticalAlignment="Center">
+                                <local:MatrixNameSpan Text="0"/> =
+                            </TextBlock>
+                            <local:Matrix x:Name="matrix10" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                        </local:StackPanelHorizontal>
+                    </StackPanel>
+                </local:PageParagraph>
+
+                <local:PageParagraph>
+                    <local:PageParagraph.Title>
+                        <TextBlock Text="Trojuholníková matica"/>
+                    </local:PageParagraph.Title>
+                    <StackPanel>
+                        <TextBlock TextWrapping="Wrap" Margin="0,10,0,0">
+                            Trojuholníková matica je matica, v ktorej sa všetky prvky nad 
+                            alebo pod hlavnou diagonálou rovnajú nule.<LineBreak/>
+                            Existujú dva typy trojuholníkových matíc:
+                        </TextBlock>
+
+                        <Grid Margin="0,10,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                                Horná trojuholníková matica
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="20,0,0,0">
+                                Dolná trojuholníková matica
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0">
+                                <local:MatrixNameSpan Text="A"/> =
+                            </TextBlock>
+
+                            <local:Matrix Grid.Row="1" Grid.Column="1" x:Name="matrix11"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="30,0,10,0">
+                                <local:MatrixNameSpan Text="B"/> =
+                            </TextBlock>
+
+                            <local:Matrix Grid.Row="1" Grid.Column="3" x:Name="matrix12"/>
+
+                        </Grid>
+                    </StackPanel>
+                </local:PageParagraph>
+
+                <local:PageParagraph>
+                    <local:PageParagraph.Title>
+                        <TextBlock Text="Jednotková matica"/>
+                    </local:PageParagraph.Title>
+                    <StackPanel>
+                        <TextBlock TextWrapping="Wrap">
+                            Jednotková matica je matica, v ktorej sa všetky prvky na hlavnej 
+                            diagonále rovnajú 1 a všetky ostatné prvky sa rovnajú 0.
+                        </TextBlock>
+
+                        <local:StackPanelHorizontal Margin="5,15,0,0">
+                            <TextBlock VerticalAlignment="Center" Margin="0,0,10,0">
+                                <local:MatrixNameSpan Text="E"/> =
+                            </TextBlock>
+                            <local:Matrix x:Name="matrix13"/>
+                        </local:StackPanelHorizontal>
+                    </StackPanel>
+                </local:PageParagraph>
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

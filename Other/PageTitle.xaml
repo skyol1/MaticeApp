@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="MaticeApp.PageTitle"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaticeApp"
+             mc:Ignorable="d">
+    
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="BorderColor" Color="#FFADD8E6" />
+        <Color x:Key="GradientColor" A="255" R="173" G="216" B="230"/>
+
+        <!-- Style applied to all TextBlock elements inside this UserControl -->
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="20,10,20,14" />
+        </Style>
+    </UserControl.Resources>
+
+    <Border CornerRadius="10" BorderThickness="4" BorderBrush="{StaticResource BorderColor}" d:Background="LightGray">
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="Margin" Value="-0.5"/>
+                </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+
+            <ContentControl Content="{Binding TitleContent, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                            Grid.RowSpan="3" Grid.ColumnSpan="3"/>
+
+            <d:TextBlock Text="Page title text" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
+
+            <Border Grid.Row="0" Grid.Column="0">
+                <Border.Background>
+                    <RadialGradientBrush GradientOrigin="1,1" Center="1,1" RadiusX="1" RadiusY="1">
+                        <GradientStop Color="{StaticResource GradientColor}" Offset="1" />
+                        <GradientStop Color="Transparent" Offset="0" />
+                    </RadialGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="1">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="{StaticResource GradientColor}" Offset="0" />
+                        <GradientStop Color="Transparent" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="2">
+                <Border.Background>
+                    <RadialGradientBrush GradientOrigin="0,1" Center="0,1" RadiusX="1" RadiusY="1">
+                        <GradientStop Color="{StaticResource GradientColor}" Offset="1" />
+                        <GradientStop Color="Transparent" Offset="0" />
+                    </RadialGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="{StaticResource GradientColor}" Offset="0" />
+                        <GradientStop Color="Transparent" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="2">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                        <GradientStop Color="{StaticResource GradientColor}" Offset="0" />
+                        <GradientStop Color="Transparent" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="0">
+                <Border.Background>
+                    <RadialGradientBrush GradientOrigin="1,0" Center="1,0" RadiusX="1" RadiusY="1">
+                        <GradientStop Color="{StaticResource GradientColor}" Offset="1" />
+                        <GradientStop Color="Transparent" Offset="0" />
+                    </RadialGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="1">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                        <GradientStop Color="{StaticResource GradientColor}" Offset="0" />
+                        <GradientStop Color="Transparent" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border Grid.Row="2" Grid.Column="2">
+                <Border.Background>
+                    <RadialGradientBrush GradientOrigin="0,0" Center="0,0" RadiusX="1" RadiusY="1">
+                        <GradientStop Color="{StaticResource GradientColor}" Offset="1" />
+                        <GradientStop Color="Transparent" Offset="0" />
+                    </RadialGradientBrush>
+                </Border.Background>
+            </Border>
+        </Grid>
+    </Border>
+
+</UserControl>

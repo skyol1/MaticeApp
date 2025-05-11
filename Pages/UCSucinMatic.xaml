@@ -1,0 +1,206 @@
+﻿<UserControl x:Class="MaticeApp.UCSucinMatic"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaticeApp"
+             mc:Ignorable="d" 
+             d:Background="#FFE6E6E6"
+             d:DesignWidth="800">
+    <Grid>
+        <ScrollViewer>
+            <StackPanel Margin="8,10,10,50">
+
+                <local:PageTitle>
+                    <local:PageTitle.TitleContent>
+                        <TextBlock Text="Súčin matíc"/>
+                    </local:PageTitle.TitleContent>
+                </local:PageTitle>
+
+                <local:PagePanel>
+                    <TextBlock TextWrapping="Wrap">
+                        Násobenie matíc je zložitejšia operácia než sčítanie alebo odčítanie. 
+                        Aby bolo možné vynásobiť dve matice, musia spĺňať špecifické požiadavky na rozmery:
+                        počet stľpcov prvej matice sa musí rovnať počtu riadkov druhej matice.
+                        Ak chceme násobiť maticu <local:MatrixNameSpan Text="A"/> typu 
+                        <Italic>m×p</Italic> a maticu <local:MatrixNameSpan Text="B"/> 
+                        typu <Italic>p×n</Italic>, výsledná matica <local:MatrixNameSpan Text="C"/> 
+                        bude typu <Italic>m×n</Italic>. 
+                        Násobenie matíc sa vykonáva na základe súčtu súčinov zodpovedajúcich prvkov 
+                        riadkov prvej matice a stĺpcov druhej matice.
+                    </TextBlock>
+                </local:PagePanel>
+
+                <local:PageParagraph>
+                    <local:PageParagraph.Title>
+                        <TextBlock Text="Definícia"/>
+                    </local:PageParagraph.Title>
+                    <StackPanel>
+                        <TextBlock TextWrapping="Wrap">
+                            Nech matica <local:NoBreakSpan><local:MatrixNameSpan Text="A"/> = (<local:MatrixElementSpan Text="a_ik"/>)</local:NoBreakSpan> 
+                            je typu <Italic>m×p</Italic> a matica 
+                            <local:NoBreakSpan><local:MatrixNameSpan Text="B"/> = (<local:MatrixElementSpan Text="b_kj"/>)</local:NoBreakSpan> 
+                            je typu <Italic>p×n</Italic>. <LineBreak/>
+                            Maticu <local:NoBreakSpan><local:MatrixNameSpan Text="C"/> = (<local:MatrixElementSpan Text="c_ij"/>)</local:NoBreakSpan> 
+                            typu <Italic>m×n</Italic> nazývame súčin matíc <local:MatrixNameSpan Text="A"/> a <local:MatrixNameSpan Text="B"/>, píšeme
+                            <local:NoBreakSpan><local:MatrixNameSpan Text="C"/> = <local:MatrixNameSpan Text="A"/> · <local:MatrixNameSpan Text="B"/>, ak</local:NoBreakSpan>
+                        </TextBlock>
+
+                        <local:StackPanelHorizontal>
+                            <TextBlock Margin="0,4,0,0">
+                                <local:MatrixElementSpan Text="c_ij"/> =
+                            </TextBlock>
+                            <StackPanel>
+                                <TextBlock HorizontalAlignment="Center">
+                                    <Italic>p</Italic>
+                                </TextBlock>
+                                <TextBlock Text="∑" HorizontalAlignment="Center" FontSize="25" FontWeight="Light">
+                                    <!-- Change the size and move using rendering -->
+                                    <TextBlock.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleX="2" ScaleY="1.5"/>
+                                            <TranslateTransform X="-8" Y="-12"/>
+                                        </TransformGroup>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+                                <TextBlock HorizontalAlignment="Center">
+                                    <Italic>k</Italic>=1
+                                </TextBlock>
+                            </StackPanel>
+                            <TextBlock Margin="0,4,0,0">
+                                <local:MatrixElementSpan Text="a_ik"/>
+                                <local:MatrixElementSpan Text="b_kj"/>
+                            </TextBlock>
+                            <TextBlock Margin="20,4,0,0">
+                                pre každé <Italic>i</Italic> = 1, ..., <Italic>m</Italic> a 
+                                <Italic>j</Italic> = 1, ..., <Italic>n</Italic>.
+                            </TextBlock>
+                        </local:StackPanelHorizontal>
+                        
+                        <TextBlock Margin="0,5,0,10">
+                            <Run Text="Príklad" FontWeight="SemiBold"/>:
+                        </TextBlock>
+                        
+                        <local:StackPanelHorizontal>
+                            <TextBlock VerticalAlignment="Center" Margin="5,0,5,0">
+                                <local:MatrixNameSpan Text="A"/> =
+                            </TextBlock>
+                            <local:Matrix x:Name="matrix1"/>
+                            <TextBlock VerticalAlignment="Center" Margin="20,0,5,0">
+                                <local:MatrixNameSpan Text="B"/> =
+                            </TextBlock>
+                            <local:Matrix x:Name="matrix2"/>
+                            <TextBlock VerticalAlignment="Center" Margin="20,0,5,0">
+                                <local:MatrixNameSpan Text="C"/> =
+                            </TextBlock>
+                            <local:Matrix x:Name="matrix3"/>
+                            <TextBlock Text="=" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                            <local:Matrix x:Name="matrix4"/>
+                        </local:StackPanelHorizontal>
+                    </StackPanel>
+                </local:PageParagraph>
+
+                <local:PageParagraph>
+                    <local:PageParagraph.Title>
+                        <TextBlock Text="Vlastnosti"/>
+                    </local:PageParagraph.Title>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,0,10,0">
+                            1.
+                        </TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,10">
+                            <Run FontWeight="SemiBold">Asociatívnosť:</Run> <LineBreak/>
+                            Pri násobení viacerých matíc môžeme meniť poradie operácií, ale nie poradie matíc samotných. <LineBreak/>
+                            (<local:MatrixNameSpan Text="A"/> ⋅ <local:MatrixNameSpan Text="B"/>) ⋅ <local:MatrixNameSpan Text="C"/> =
+                            <local:MatrixNameSpan Text="A"/> ⋅ (<local:MatrixNameSpan Text="B"/> ⋅ <local:MatrixNameSpan Text="C"/>)
+                        </TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,0,10,0">
+                            2.
+                        </TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,10">
+                            <Run FontWeight="SemiBold">Distributívnosť:</Run> <LineBreak/>
+                            Násobenie matice súčtom dvoch matíc je rovnaké, ako keby sme 
+                            vynásobili každú maticu zvlášť a následne sčítali výsledky. <LineBreak/>
+                            <local:MatrixNameSpan Text="A"/> ⋅ (<local:MatrixNameSpan Text="B"/> + <local:MatrixNameSpan Text="C"/>) =
+                            <local:MatrixNameSpan Text="A"/> ⋅ <local:MatrixNameSpan Text="B"/> +
+                            <local:MatrixNameSpan Text="A"/> ⋅ <local:MatrixNameSpan Text="C"/>
+                            <LineBreak/>
+                            (<local:MatrixNameSpan Text="A"/> + <local:MatrixNameSpan Text="B"/>) ⋅ <local:MatrixNameSpan Text="C"/> =
+                            <local:MatrixNameSpan Text="A"/> ⋅ <local:MatrixNameSpan Text="C"/> +
+                            <local:MatrixNameSpan Text="B"/> ⋅ <local:MatrixNameSpan Text="C"/>
+                        </TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,0,10,0">
+                            3.
+                        </TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,10">
+                            <Run FontWeight="SemiBold">Komutatívnosť</Run> <Italic><Run FontWeight="SemiBold">neplatí</Run></Italic>: <LineBreak/>
+                            Na rozdiel od násobenia čísel, pri násobení matíc nezáleží len na maticiach, ale aj ich poradí. <LineBreak/>
+                            <local:MatrixNameSpan Text="A"/> ⋅ <local:MatrixNameSpan Text="B"/> ≠ <local:MatrixNameSpan Text="B"/> ⋅ <local:MatrixNameSpan Text="A"/>
+                        </TextBlock>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Margin="0,0,10,0">
+                            4.
+                        </TextBlock>
+                        <TextBlock Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,10">
+                            <Run FontWeight="SemiBold">Násobenie nulovou maticou:</Run> <LineBreak/>
+                            Ak vynásobíme ľubovoľnú maticu nulovou maticou (zodpovedajúcich rozmerov), 
+                            výsledkom bude nulová matica. <LineBreak/>
+                            <local:MatrixNameSpan Text="A"/> ⋅ <local:MatrixNameSpan Text="0"/> = <local:MatrixNameSpan Text="0"/>
+                        </TextBlock>
+                        <TextBlock Grid.Row="4" Grid.Column="0" Margin="0,0,10,0">
+                            5.
+                        </TextBlock>
+                        <TextBlock Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,0,10">
+                            <Run FontWeight="SemiBold">Neutrálny prvok:</Run> <LineBreak/>
+                            Ak vynásobíme ľubovoľnú maticu jednotkovou maticou (zodpovedajúcich rozmerov), 
+                            výsledkom bude pôvodná matica. <LineBreak/>
+                            <local:MatrixNameSpan Text="A"/> ⋅ <local:MatrixNameSpan Text="E"/> = 
+                            <local:MatrixNameSpan Text="E"/> ⋅ <local:MatrixNameSpan Text="A"/> = <local:MatrixNameSpan Text="A"/>
+                        </TextBlock>
+                        <TextBlock Grid.Row="5" Grid.Column="0" Margin="0,0,10,0">
+                            6.
+                        </TextBlock>
+                        <TextBlock Grid.Row="5" Grid.Column="1" TextWrapping="Wrap">
+                            <Run FontWeight="SemiBold">Transpozícia súčinu matíc:</Run> <LineBreak/>
+                            <InlineUIContainer>
+                                <local:PopupControl>
+                                    <local:PopupControl.TriggerElement>
+                                        <local:HighlightBorder>
+                                            <TextBlock Text="Transpozícia"/>
+                                        </local:HighlightBorder>
+                                    </local:PopupControl.TriggerElement>
+                                    <local:StackPanelHorizontal>
+                                        <TextBlock Margin="0,0,10,0">
+                                            <local:MatrixNameSpan Text="A"/> =
+                                        </TextBlock>
+                                        <local:Matrix x:Name="matrix6_1"/>
+                                        <TextBlock Margin="20,0,10,0">
+                                            <local:MatrixNameSpan Text="A^T"/> =
+                                        </TextBlock>
+                                        <local:Matrix x:Name="matrix6_2"/>
+                                    </local:StackPanelHorizontal>
+                                </local:PopupControl>
+                            </InlineUIContainer>
+                            súčinu dvoch matíc je rovnaká ako súčin transpozícií 
+                            týchto matíc v opačnom poradí. <LineBreak/>
+                            (<local:MatrixNameSpan Text="A"/> ⋅ <local:MatrixNameSpan Text="B"/>)<local:SuperscriptSpan Text="T"/>
+                            = <local:MatrixNameSpan Text="B^T"/> ⋅ <local:MatrixNameSpan Text="A^T"/>
+                        </TextBlock>
+                    </Grid>
+                </local:PageParagraph>
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
